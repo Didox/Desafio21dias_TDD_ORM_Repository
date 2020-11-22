@@ -1,0 +1,44 @@
+﻿<Properties StartupConfiguration="{FA2EFC4D-716A-4644-ACCF-EBD3F8D8C61B}|Default">
+  <MonoDevelop.Ide.ItemProperties.APIDesafio PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Desafio21diasTDD/UTestsIRepositorio.cs">
+    <Files>
+      <File FileName="APIDesafio/Controllers/ClientesController.cs" Line="48" Column="1" />
+      <File FileName="APIDesafio/Servicos/Database/SqlRepositorio.cs" Line="88" Column="6" />
+      <File FileName="Desafio21diasTDD/UTestsIRepositorio.cs" Line="103" Column="22" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Desafio21diasTDD" expanded="True">
+            <Node name="APIDesafio" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Servicos" expanded="True">
+                <Node name="Database" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Desafio21diasTDD" expanded="True">
+              <Node name="UTestsIRepositorio.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>dr[p.Name]</Value>
+          <Value>dr[p.Name]</Value>
+          <Value>p.Name</Value>
+          <Value>dr[1].ToString()</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/Controllers/ClientesController.cs" relfile="APIDesafio/Controllers/ClientesController.cs" line="48" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
