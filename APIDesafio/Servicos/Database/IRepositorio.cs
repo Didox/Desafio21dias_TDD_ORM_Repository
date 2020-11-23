@@ -12,5 +12,7 @@ namespace Desafio21diasAPI.Servicos.Database
         List<T> Todos<T>(string criterio);
         T BuscaPorId<T>(int id);
         string DadosDoArmazenamento();
+        void ExecutaSqlQuery<T>(string sql);
+        List<T> TodosSqlQuery<T>(string sql);
     }
 }

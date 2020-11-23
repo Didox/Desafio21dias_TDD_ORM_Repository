@@ -1,56 +1,96 @@
 using Desafio21diasAPI.Models;
 using Desafio21diasAPI.Servicos.Database;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace Desafio21diasTDD
 {
     public class UTestsIRepositorio
     {
-        //[SetUp]
-        //public void Setup()
-        //{
-        //    var db = new DbTexto();
-        //    db.Salvar(new Modelo() { Titulo = "Modelo 1" });
-        //    db.Salvar(new Modelo() { Titulo = "Modelo 2" });
-        //    db.Salvar(new Modelo() { Titulo = "Modelo 3" });
-        //    db.Salvar(new Modelo() { Titulo = "Modelo 4" });
-        //    db.Salvar(new Modelo() { Titulo = "Modelo 5" });
-        //}
+        [SetUp]
+        public void Setup() { }
 
-        //[Test]
-        //public void ExcluirDadosRepo()
-        //{
-        //    var db = new DbTexto();
-        //    int qtdOriginal = db.Todos<Modelo>().Count;
+        [Test]
+        public void TestaContratoExcluir()
+        {
+            Assert.Throws<NotImplementedException>(() =>
+            {
+                new DbTexto().Excluir<Modelo>(3);
+            });
+        }
 
-        //    db.Excluir<Modelo>(3);
+        [Test]
+        public void TestaContratoSalvar()
+        {
+            Assert.Throws<NotImplementedException>(() =>
+            {
+                new DbTexto().Salvar<Modelo>(new Modelo() {Id=1, Titulo= "Danilo teste"});
+            });
+        }
 
-        //    int qtdExcluido = db.Todos<Modelo>().Count;
+        [Test]
+        public void TestaContratoSalvarSemTipo()
+        {
+            Assert.Throws<NotImplementedException>(() =>
+            {
+                new DbTexto().Salvar(new Modelo() {Id=1, Titulo= "Danilo teste"});
+            });
+        }
 
-        //    Assert.IsTrue(qtdExcluido < qtdOriginal);
-        //}
+        [Test]
+        public void TestaBuscaPorId()
+        {
+            Assert.Throws<NotImplementedException>(() =>
+            {
+                new DbTexto().BuscaPorId<Modelo>(1);
+            });
+        }
 
-        //[Test]
-        //public void IncluirDadosRepo()
-        //{
-        //    var db = new DbTexto();
-        //    int qtdOriginal = db.Todos<Modelo>().Count;
+        [Test]
+        public void TestaBuscaCriterio()
+        {
+            Assert.Throws<NotImplementedException>(() =>
+            {
+                new DbTexto().Todos<Modelo>("Criterio de busca where");
+            });
+        }
 
-        //    db.Salvar(new Modelo(){Titulo = "12345678"});
+        [Test]
+        public void TestaBusca()
+        {
+            Assert.Throws<NotImplementedException>(() =>
+            {
+                new DbTexto().Todos<Modelo>();
+            });
+        }
 
-        //    int qtdNova = db.Todos<Modelo>().Count;
+        [Test]
+        public void TestaDadosArmazenamento()
+        {
+            Assert.Throws<NotImplementedException>(() =>
+            {
+                new DbTexto().DadosDoArmazenamento();
+            });
+        }
 
-        //    Assert.IsTrue(qtdNova > qtdOriginal);
-        //}
+        [Test]
+        public void TestaExecutaSqlQuery()
+        {
+            Assert.Throws<NotImplementedException>(() =>
+            {
+                new DbTexto().ExecutaSqlQuery<Modelo>("truncate table testes");
+            });
+        }
 
-        //[Test]
-        //public void BuscarModelo2()
-        //{
-        //    var db = new DbTexto();
-        //    Modelo modelo = (Modelo)db.BuscaPorId<Modelo>(2);
-        //    Assert.IsTrue(modelo.Titulo == "Modelo 2");
-        //}
+        [Test]
+        public void TestaTodosSqlQuery()
+        {
+            Assert.Throws<NotImplementedException>(() =>
+            {
+                new DbTexto().TodosSqlQuery<Modelo>("select testes.* from testes inner join ...");
+            });
+        }
     }
 
     internal class Modelo : IModel
@@ -60,49 +100,46 @@ namespace Desafio21diasTDD
     }
 
 
-  //  internal class DbTexto : IRepositorio
-  //  {
-  //      private static int idIdentity = 1;
-  //      private static List<T> db = new List<T>();
-  //      public T BuscaPorId<T>(int id)
-  //      {
-  //          return db.Find(c => c.Id == id);
-  //      }
+    internal class DbTexto : IRepositorio
+    {
+        public T BuscaPorId<T>(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-  //      public string DadosDoArmazenamento()
-  //      {
-  //          return string.Empty;
-  //      }
+        public string DadosDoArmazenamento()
+        {
+            throw new NotImplementedException();
+        }
 
-  //      public void Excluir<T>(int id)
-  //      {
-  //          db.RemoveAll(c => c.Id == id);
-  //      }
+        public void Excluir<T>(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-  //      public void Salvar(IModel modelo)
-  //      {
-  //          if (modelo.Id == 0)
-  //          {
-  //              modelo.Id = idIdentity;
-  //              db.Add(modelo);
-  //              idIdentity++;
-  //              return;
-  //          }
+        public void Salvar<T>(T modelo)
+        {
+            throw new NotImplementedException();
+        }
 
-  //          foreach (var objeto in db)
-  //          {
-  //              if (objeto.Id == modelo.Id)
-  //              {
-  //                  // clienteBase.Nome = cliente.Nome;
-  //                  // clienteBase.Telefone = cliente.Telefone;
-  //                  // clienteBase.Endereco = cliente.Endereco;
-  //              }
-  //          }
-  //      }
+        public List<T> Todos<T>(string criterio)
+        {
+            throw new NotImplementedException();
+        }
 
-  //      public List<T> Todos<T>()
-  //      {
-  //          return db;
-  //      }
-  //}
+        public List<T> Todos<T>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExecutaSqlQuery<T>(string sql)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> TodosSqlQuery<T>(string sql)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{FA2EFC4D-716A-4644-ACCF-EBD3F8D8C61B}|Default">
   <MonoDevelop.Ide.ItemProperties.APIDesafio PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Desafio21diasTDD/UTestsIRepositorio.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Desafio21diasTDD/UTestsSqlRepositorio.cs">
     <Files>
       <File FileName="APIDesafio/Controllers/ClientesController.cs" Line="48" Column="1" />
-      <File FileName="APIDesafio/Servicos/Database/SqlRepositorio.cs" Line="88" Column="6" />
-      <File FileName="Desafio21diasTDD/UTestsIRepositorio.cs" Line="103" Column="22" />
+      <File FileName="APIDesafio/Servicos/Database/SqlRepositorio.cs" />
+      <File FileName="Desafio21diasTDD/UTestsIRepositorio.cs" Line="11" Column="16" />
+      <File FileName="Desafio21diasTDD/UTestsSqlRepositorio.cs" Line="21" Column="33" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,17 +19,9 @@
               </Node>
             </Node>
             <Node name="Desafio21diasTDD" expanded="True">
-              <Node name="UTestsIRepositorio.cs" selected="True" />
+              <Node name="UTestsSqlRepositorio.cs" selected="True" />
             </Node>
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>dr[p.Name]</Value>
-          <Value>dr[p.Name]</Value>
-          <Value>p.Name</Value>
-          <Value>dr[1].ToString()</Value>
         </State>
       </Pad>
     </Pads>
