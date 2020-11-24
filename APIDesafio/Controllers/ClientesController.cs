@@ -45,14 +45,18 @@ namespace Desafio21diasAPI.Controllers
         [Route("/clientes")]
         public IEnumerable<Cliente> Get()
         {
-            return new SqlRepositorio().Todos<Cliente>();
+            // return new SqlRepositorio().Todos<Cliente>();
+            return new EntityRepositorio().Clientes.ToList();
         }
 
         [HttpPost]
         [Route("/clientes")]
         public Cliente Criar([FromBody] Cliente cliente)
         {
-            new SqlRepositorio().Salvar<Cliente>(cliente);
+            //new SqlRepositorio().Salvar<Cliente>(cliente);
+            var db = new EntityRepositorio();
+            db.Clientes.Add(cliente);
+            db.SaveChanges();
             return cliente;
         }
 
@@ -60,7 +64,8 @@ namespace Desafio21diasAPI.Controllers
         [Route("/clientes/{id}")]
         public Cliente Ver(int id)
         {
-            Cliente cliente = new SqlRepositorio().BuscaPorId<Cliente>(id);
+            //Cliente cliente = new SqlRepositorio().BuscaPorId<Cliente>(id);
+            Cliente cliente = new EntityRepositorio().Clientes.Where(c => c.Id == id).First();
             return cliente;
         }
 
@@ -69,7 +74,9 @@ namespace Desafio21diasAPI.Controllers
         [Authorize(Roles = "editor, administrador")]
         public IActionResult Atualizar(int id, [FromBody] Cliente cliente)
         {
-            var cli = new SqlRepositorio().BuscaPorId<Cliente>(id);
+            // var cli = new SqlRepositorio().BuscaPorId<Cliente>(id);
+            var db = new EntityRepositorio();
+            var cli = db.Clientes.Where(c => c.Id == id).First();
 
             var ruleAdm = HttpContext.User.Claims.SingleOrDefault(p => p.Value == "administrador");
             if(ruleAdm == null){
@@ -79,8 +86,18 @@ namespace Desafio21diasAPI.Controllers
                 }
             }
 
-            cliente.Id = id;
-            new SqlRepositorio().Salvar(cliente);
+            // cliente.Id = id; 
+            // new SqlRepositorio().Salvar(cliente);
+            
+            cli.Nome = cliente.Nome;
+            cli.Endereco = cliente.Endereco;
+            cli.Login = cliente.Login;
+            cli.Senha = cliente.Senha;
+            cli.RegraAcesso = cliente.RegraAcesso;
+            cli.Telefone = cliente.Telefone;
+            
+            db.Update(cli);
+            db.SaveChanges();
 
             return NoContent();
         }
@@ -90,7 +107,12 @@ namespace Desafio21diasAPI.Controllers
         [Route("/clientes/{id}")]
         public void Apagar(int id)
         {
-            new SqlRepositorio().Excluir<Cliente>(id);
+            // new SqlRepositorio().Excluir<Cliente>(id);
+            
+            var db = new EntityRepositorio();
+            var cli = db.Clientes.Where(c => c.Id == id).First();
+            db.Clientes.Remove(cli);
+            db.SaveChanges();
         }
     }
 }

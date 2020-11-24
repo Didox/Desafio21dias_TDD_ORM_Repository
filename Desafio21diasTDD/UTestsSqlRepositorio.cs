@@ -89,7 +89,7 @@ namespace Desafio21diasTDD
         }
     }
 
-    internal class Teste : IModel
+    internal partial class Teste : IModel
     {
         public int Id { get; set; }
         public string Nome { get; set; }
