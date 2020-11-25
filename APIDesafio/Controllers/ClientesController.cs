@@ -8,6 +8,7 @@ using Desafio21diasAPI.Servicos.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 
 namespace Desafio21diasAPI.Controllers
 {
@@ -46,7 +47,8 @@ namespace Desafio21diasAPI.Controllers
         public IEnumerable<Cliente> Get()
         {
             // return new SqlRepositorio().Todos<Cliente>();
-            return new EntityRepositorio().Clientes.ToList();
+            // return new EntityRepositorio().Clientes.ToList();
+            return new MongoDbRepositorio().Todos<Cliente>();
         }
 
         [HttpPost]
@@ -54,29 +56,35 @@ namespace Desafio21diasAPI.Controllers
         public Cliente Criar([FromBody] Cliente cliente)
         {
             //new SqlRepositorio().Salvar<Cliente>(cliente);
-            var db = new EntityRepositorio();
-            db.Clientes.Add(cliente);
-            db.SaveChanges();
+
+            // var db = new EntityRepositorio();
+            // db.Clientes.Add(cliente);
+            // db.SaveChanges();
+
+            new MongoDbRepositorio().Salvar<Cliente>(cliente);
+
             return cliente;
         }
 
         [HttpGet]
         [Route("/clientes/{id}")]
-        public Cliente Ver(int id)
+        public Cliente Ver(string id)
         {
             //Cliente cliente = new SqlRepositorio().BuscaPorId<Cliente>(id);
-            Cliente cliente = new EntityRepositorio().Clientes.Where(c => c.Id == id).First();
+            // Cliente cliente = new EntityRepositorio().Clientes.Where(c => c.Id == id).First();
+            Cliente cliente = new MongoDbRepositorio().BuscaCriterio<Cliente>().Where(c => c.Id == ObjectId.Parse(id)).First();
             return cliente;
         }
 
         [HttpPut]
         [Route("/clientes/{id}")]
         [Authorize(Roles = "editor, administrador")]
-        public IActionResult Atualizar(int id, [FromBody] Cliente cliente)
+        public IActionResult Atualizar(string id, [FromBody] Cliente cliente)
         {
             // var cli = new SqlRepositorio().BuscaPorId<Cliente>(id);
-            var db = new EntityRepositorio();
-            var cli = db.Clientes.Where(c => c.Id == id).First();
+            // var db = new EntityRepositorio();
+            // var cli = db.Clientes.Where(c => c.Id == id).First();
+            var cli = new MongoDbRepositorio().BuscaCriterio<Cliente>().Where(c => c.Id == ObjectId.Parse(id)).First();
 
             var ruleAdm = HttpContext.User.Claims.SingleOrDefault(p => p.Value == "administrador");
             if(ruleAdm == null){
@@ -89,15 +97,18 @@ namespace Desafio21diasAPI.Controllers
             // cliente.Id = id; 
             // new SqlRepositorio().Salvar(cliente);
             
-            cli.Nome = cliente.Nome;
-            cli.Endereco = cliente.Endereco;
-            cli.Login = cliente.Login;
-            cli.Senha = cliente.Senha;
-            cli.RegraAcesso = cliente.RegraAcesso;
-            cli.Telefone = cliente.Telefone;
+            // cli.Nome = cliente.Nome;
+            // cli.Endereco = cliente.Endereco;
+            // cli.Login = cliente.Login;
+            // cli.Senha = cliente.Senha;
+            // cli.RegraAcesso = cliente.RegraAcesso;
+            // cli.Telefone = cliente.Telefone;
             
-            db.Update(cli);
-            db.SaveChanges();
+            // db.Update(cli);
+            // db.SaveChanges();
+            
+            cliente.Id = ObjectId.Parse(id); 
+            new MongoDbRepositorio().Salvar(cliente);
 
             return NoContent();
         }
@@ -105,14 +116,16 @@ namespace Desafio21diasAPI.Controllers
         [HttpDelete]
         [Authorize(Roles = "administrador")]
         [Route("/clientes/{id}")]
-        public void Apagar(int id)
+        public void Apagar(string id)
         {
             // new SqlRepositorio().Excluir<Cliente>(id);
             
-            var db = new EntityRepositorio();
-            var cli = db.Clientes.Where(c => c.Id == id).First();
-            db.Clientes.Remove(cli);
-            db.SaveChanges();
+            // var db = new EntityRepositorio();
+            // var cli = db.Clientes.Where(c => c.Id == id).First();
+            // db.Clientes.Remove(cli);
+            // db.SaveChanges();
+
+            new MongoDbRepositorio().Excluir<Cliente>(ObjectId.Parse(id));
         }
     }
 }

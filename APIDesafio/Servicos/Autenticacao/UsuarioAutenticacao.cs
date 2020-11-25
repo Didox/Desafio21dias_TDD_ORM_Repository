@@ -11,7 +11,8 @@ namespace Desafio21diasAPI.Servicos.Autenticacao
 			public static Cliente Autenticar(string login, string senha)
 			{					
 					// var clientes = new SqlRepositorio().Todos<Cliente>($"login = '{SqlRepositorio.PreparaCampoQuery(login)}' and senha = '{SqlRepositorio.PreparaCampoQuery(senha)}'");
-					var clientes = new EntityRepositorio().Clientes.Where(c => c.Login == login && c.Senha == senha).ToList();
+					// var clientes = new EntityRepositorio().Clientes.Where(c => c.Login == login && c.Senha == senha).ToList();
+					var clientes = new MongoDbRepositorio().BuscaCriterio<Cliente>().Where(c => c.Login == login && c.Senha == senha).ToList();
 
 					if (clientes.Count == 0)
 							return null;

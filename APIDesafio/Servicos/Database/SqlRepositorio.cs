@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Desafio21diasAPI.Servicos.Database
 {
-  public class SqlRepositorio : IRepositorio
+  public class SqlRepositorio : IRepositorio, IRepositorioSql
   {
 
     public string DadosDoArmazenamento()

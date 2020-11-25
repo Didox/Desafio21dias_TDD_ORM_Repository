@@ -64,3 +64,12 @@
 /Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/runtimes/unix/lib/netcoreapp2.0/System.Runtime.Caching.dll
 /Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/runtimes/win/lib/netcoreapp2.0/System.Runtime.Caching.dll
 /Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/DnsClient.dll
+/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/MongoDB.Bson.dll
+/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/MongoDB.Driver.dll
+/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/MongoDB.Driver.Core.dll
+/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/MongoDB.Libmongocrypt.dll
+/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/SharpCompress.dll
+/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/runtimes/win/native/libzstd.dll
+/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/runtimes/win/native/snappy32.dll
+/Users/danilo/Projects/Desafio21diasTDD/APIDesafio/bin/Debug/netcoreapp3.1/runtimes/win/native/snappy64.dll

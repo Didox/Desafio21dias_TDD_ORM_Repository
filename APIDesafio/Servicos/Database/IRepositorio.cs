@@ -7,12 +7,7 @@ namespace Desafio21diasAPI.Servicos.Database
     public interface IRepositorio
     {
         void Salvar<T>(T model);
-        void Excluir<T>(int id);
         List<T> Todos<T>();
-        List<T> Todos<T>(string criterio);
-        T BuscaPorId<T>(int id);
         string DadosDoArmazenamento();
-        void ExecutaSqlQuery<T>(string sql);
-        List<T> TodosSqlQuery<T>(string sql);
     }
 }
