@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Desafio21diasAPI.Models;
 using Desafio21diasAPI.Servicos.Autenticacao;
+using Desafio21diasAPI.Servicos.Cache;
 using Desafio21diasAPI.Servicos.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +49,20 @@ namespace Desafio21diasAPI.Controllers
         {
             // return new SqlRepositorio().Todos<Cliente>();
             // return new EntityRepositorio().Clientes.ToList();
-            return new MongoDbRepositorio().Todos<Cliente>();
+
+            int minutosDeCache = 1;
+            HttpContext.Response.Headers.Add("Cache-Control", $"max-age={minutosDeCache * 60}, public, no-transform");
+
+            List<Cliente> lista;
+            var cache = new CacheHelper();
+            lista = cache.ListaDeModelosEmCache<Cliente>("clientes");
+
+            if(lista.Count == 0){
+                lista = new MongoDbRepositorio().Todos<Cliente>();
+                cache.AdicionarListaNoCache<Cliente>(lista, "clientes", minutosDeCache);
+            }
+            
+            return lista;
         }
 
         [HttpPost]
